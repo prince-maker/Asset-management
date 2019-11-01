@@ -38,7 +38,7 @@ public class RoleServiceImpl implements IRoleService{
 		domains.forEach(domain->{
 			RoleModel model=new RoleModel();
 			BeanUtils.copyProperties(domain, model);
-			
+			models.add(model);
 			
 			
 			
