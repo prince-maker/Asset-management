@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.example.assetManagement.model.RoleModel;
 
-public interface IRole {
+public interface IRoleService {
 
 	RoleModel add(RoleModel roleModel);
 

@@ -12,34 +12,32 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.assetManagement.model.AccessPolicyModel;
+import com.example.assetManagement.model.EquipmentMasterModel;
 import com.example.assetManagement.model.RoleModel;
-import com.example.assetManagement.service.IRoleService;
+import com.example.assetManagement.service.IEquipmentMaster;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(value = "/role")
-public class RoleController {
-
+@RequestMapping(value = "/equipmentMaster")
+public class EquipmentMasterController {
+	
 	@Autowired
-	IRoleService roleService;
+	IEquipmentMaster iEquipmentMaster;
+	
 	
 	@PostMapping("/save")
-    public ResponseEntity<?> authenticateUser( @RequestBody RoleModel roleModel) {
-		roleModel=roleService.add(roleModel);
+    public ResponseEntity<?> saveEquipment( @RequestBody EquipmentMasterModel equipmentMasterModel) {
+		equipmentMasterModel=iEquipmentMaster.add(equipmentMasterModel);
       
-        return new ResponseEntity<>(roleModel,HttpStatus.OK);
+        return new ResponseEntity<>(equipmentMasterModel,HttpStatus.OK);
     }
-  
-	
 	
 	@GetMapping("/getall")
-	public ResponseEntity<?> getAllRole(){
-		List<RoleModel> roleModel=roleService.getAll();
+	public ResponseEntity<?> getAllEquipments(){
+		List<EquipmentMasterModel> equipmentMasterModel=iEquipmentMaster.getAll();
 		
-		return new ResponseEntity<>(roleModel,HttpStatus.OK);
+		return new ResponseEntity<>(equipmentMasterModel,HttpStatus.OK);
 		
 	}
-	
- 
+
 }

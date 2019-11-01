@@ -15,10 +15,10 @@ import com.example.assetManagement.domain.Role;
 import com.example.assetManagement.model.AccessPolicyModel;
 import com.example.assetManagement.model.RoleModel;
 import com.example.assetManagement.repository.RoleRepository;
-import com.example.assetManagement.service.IRole;
+import com.example.assetManagement.service.IRoleService;
 
 @Service
-public class RoleServiceImpl implements IRole{
+public class RoleServiceImpl implements IRoleService{
 	@Autowired
 	RoleRepository roleRepository;
 	

@@ -12,34 +12,31 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.assetManagement.model.AccessPolicyModel;
 import com.example.assetManagement.model.RoleModel;
+import com.example.assetManagement.model.StoreModel;
 import com.example.assetManagement.service.IRoleService;
+import com.example.assetManagement.service.IstoreService;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(value = "/role")
-public class RoleController {
+@RequestMapping(value = "/store")
+public class StoreController {
 
 	@Autowired
-	IRoleService roleService;
+	IstoreService istoreService;
 	
 	@PostMapping("/save")
-    public ResponseEntity<?> authenticateUser( @RequestBody RoleModel roleModel) {
-		roleModel=roleService.add(roleModel);
+    public ResponseEntity<?> addStore( @RequestBody StoreModel storeModel) {
+		storeModel=istoreService.add(storeModel);
       
-        return new ResponseEntity<>(roleModel,HttpStatus.OK);
+        return new ResponseEntity<>(storeModel,HttpStatus.OK);
     }
-  
-	
 	
 	@GetMapping("/getall")
-	public ResponseEntity<?> getAllRole(){
-		List<RoleModel> roleModel=roleService.getAll();
+	public ResponseEntity<?> getAllStore(){
+		List<StoreModel> storeModel=istoreService.getAll();
 		
-		return new ResponseEntity<>(roleModel,HttpStatus.OK);
+		return new ResponseEntity<>(storeModel,HttpStatus.OK);
 		
 	}
-	
- 
 }
