@@ -1,10 +1,14 @@
 package com.example.assetManagement.domain;
 
 	
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Store {
@@ -22,7 +26,11 @@ public class Store {
 	private String costCentre;
 	private String storeTypeName;
 	
+	@OneToMany(mappedBy= "store")
+    List<EquipmentInventory> equipmentInventory= new ArrayList<>();
 	
+	@OneToMany(mappedBy= "store")
+    List<SparePartInventry> sparePartInventry= new ArrayList<>();
 	
 	
 	public Long getStoreId() {
@@ -84,6 +92,18 @@ public class Store {
 	}
 	public void setStoreTypeName(String storeTypeName) {
 		this.storeTypeName = storeTypeName;
+	}
+	public List<EquipmentInventory> getEquipmentInventory() {
+		return equipmentInventory;
+	}
+	public void setEquipmentInventory(List<EquipmentInventory> equipmentInventory) {
+		this.equipmentInventory = equipmentInventory;
+	}
+	public List<SparePartInventry> getSparePartInventry() {
+		return sparePartInventry;
+	}
+	public void setSparePartInventry(List<SparePartInventry> sparePartInventry) {
+		this.sparePartInventry = sparePartInventry;
 	}
 	
 	

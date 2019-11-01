@@ -38,6 +38,10 @@ public class SparePart {
     
     @OneToMany(mappedBy= "sparePart")
     List<SparePartInventry> sparePartInventry= new ArrayList<>();
+    
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
+    @JoinColumn(name = "equipmentId")
+    private EquipmentMaster equipmentMaster;
 
 	public Long getSparePartId() {
 		return sparePartId;
@@ -69,6 +73,22 @@ public class SparePart {
 
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
+	}
+
+	public List<SparePartInventry> getSparePartInventry() {
+		return sparePartInventry;
+	}
+
+	public void setSparePartInventry(List<SparePartInventry> sparePartInventry) {
+		this.sparePartInventry = sparePartInventry;
+	}
+
+	public EquipmentMaster getEquipmentMaster() {
+		return equipmentMaster;
+	}
+
+	public void setEquipmentMaster(EquipmentMaster equipmentMaster) {
+		this.equipmentMaster = equipmentMaster;
 	}
     
     

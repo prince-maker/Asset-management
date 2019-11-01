@@ -39,6 +39,9 @@ public class EquipmentMaster {
     @OneToMany(mappedBy= "equipmentMaster")
     List<EquipmentInventory> equipmentInventory= new ArrayList<>();
 
+    @OneToMany(mappedBy= "equipmentMaster")
+    List<SparePart> sparePart= new ArrayList<>();
+   
 	public Long getEquipmentId() {
 		return equipmentId;
 	}
@@ -69,6 +72,22 @@ public class EquipmentMaster {
 
 	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
+	}
+
+	public List<EquipmentInventory> getEquipmentInventory() {
+		return equipmentInventory;
+	}
+
+	public void setEquipmentInventory(List<EquipmentInventory> equipmentInventory) {
+		this.equipmentInventory = equipmentInventory;
+	}
+
+	public List<SparePart> getSparePart() {
+		return sparePart;
+	}
+
+	public void setSparePart(List<SparePart> sparePart) {
+		this.sparePart = sparePart;
 	}
     
    

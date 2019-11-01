@@ -28,6 +28,7 @@ public class SparePartMaster implements ISparePartMaster{
 		SparePart sparePart=new SparePart();
 		BeanUtils.copyProperties(sparePartModel, sparePart);
 		sparePart.setCreatedDate(new Date());
+		
 		sparePart=iSparePartsRepo.save(sparePart);
 		BeanUtils.copyProperties(sparePart, sparePartModel);
 

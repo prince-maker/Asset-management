@@ -42,6 +42,10 @@ public class EquipmentInventory {
     @JoinColumn(name = "equipmentId")
     private EquipmentMaster equipmentMaster;
 
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
+    @JoinColumn(name = "storeId")
+    private  Store store;
+    
 	public Long getEquipmentInventryId() {
 		return equipmentInventryId;
 	}
@@ -89,7 +93,15 @@ public class EquipmentInventory {
 	public void setEquipmentMaster(EquipmentMaster equipmentMaster) {
 		this.equipmentMaster = equipmentMaster;
 	}
-    
+
+	public Store getStore() {
+		return store;
+	}
+
+	public void setStore(Store store) {
+		this.store = store;
+	}
+   
     
 
 }
