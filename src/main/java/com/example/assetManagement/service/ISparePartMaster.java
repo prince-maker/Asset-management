@@ -10,4 +10,6 @@ public interface ISparePartMaster {
 
 	List<SparePartModel> getAll();
 
+	SparePartModel getBySpareId(Long id);
+
 }

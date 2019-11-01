@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 
 import com.example.assetManagement.domain.EquipmentMaster;
 import com.example.assetManagement.domain.SparePart;
+import com.example.assetManagement.domain.Store;
 import com.example.assetManagement.model.EquipmentMasterModel;
 import com.example.assetManagement.model.SparePartModel;
+import com.example.assetManagement.model.StoreModel;
 import com.example.assetManagement.repository.ISparePartsRepo;
 import com.example.assetManagement.service.ISparePartMaster;
 
@@ -52,4 +54,23 @@ public class SparePartMaster implements ISparePartMaster{
 		
 	}
 
+	@Override
+	public SparePartModel getBySpareId(Long id) {
+		SparePart sparePart;
+		try {
+			sparePart = iSparePartsRepo.findById(id).orElseThrow(()->new RuntimeException("Spare id not found"));
+			
+			SparePartModel sparePartModel=new SparePartModel();
+			BeanUtils.copyProperties(sparePart, sparePartModel);
+			
+		
+			return sparePartModel;
+			} catch (RuntimeException e) {
+	
+				throw e;
+	}
 }
+		
+	}
+
+

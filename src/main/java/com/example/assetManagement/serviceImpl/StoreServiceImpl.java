@@ -3,6 +3,8 @@ package com.example.assetManagement.serviceImpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.management.relation.RoleNotFoundException;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,5 +47,21 @@ public class StoreServiceImpl implements IstoreService{
 		});
 		return storeModels;
 	}
+
+	@Override
+	public StoreModel getByStoreId(Long id)   {
+		Store store;
+		try {
+			store = storeRepo.findById(id).orElseThrow(()->new RuntimeException("Store id not found"));
+		
+			StoreModel storeModel=new StoreModel();
+			BeanUtils.copyProperties(store, storeModel);
+		
+			return storeModel;
+			} catch (RuntimeException e) {
+	
+				throw e;
+	}
+}
 
 }

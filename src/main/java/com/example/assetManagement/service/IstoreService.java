@@ -10,4 +10,6 @@ public interface IstoreService {
 
 	List<StoreModel> getAll();
 
+	StoreModel getByStoreId(Long id);
+
 }

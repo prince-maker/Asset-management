@@ -40,7 +40,7 @@ public class SparePart {
     List<SparePartInventry> sparePartInventry= new ArrayList<>();
     
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
-    @JoinColumn(name = "equipmentId")
+    @JoinColumn(name = "equipmentId",nullable = true)
     private EquipmentMaster equipmentMaster;
 
 	public Long getSparePartId() {
