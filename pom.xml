@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example.assetManagement</groupId>
-	<artifactId>AssetManagement-2</artifactId>
+	<artifactId>AssetManagement2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>AssetManagement-2</name>
+	<name>AssetManagement</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -19,7 +19,7 @@
 	</properties>
 
 	<dependencies>
-				<dependency>
+					<dependency>
 			 			 <groupId>org.springframework.boot</groupId>
 						  <artifactId>spring-boot-starter-data-jpa</artifactId>
 					</dependency>
@@ -54,9 +54,13 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.4.0</version>
 		</dependency>
-		
-	
-		
+	<!-- 	
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		 -->
 
 		
 		
@@ -65,6 +69,9 @@
     		<artifactId>postgresql</artifactId>
     		<version>9.4-1201-jdbc4</version>
 		 </dependency>  
+ 
+
+		
 	</dependencies>
 
 	<build>
