@@ -1,5 +1,7 @@
 package com.example.assetManagement.contoller;
 
+import java.nio.file.attribute.UserPrincipal;
+import java.security.Principal;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,9 +24,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.assetManagement.domain.Role;
 import com.example.assetManagement.domain.UserDomain;
+import com.example.assetManagement.model.EquipmentMasterModel;
 import com.example.assetManagement.model.JwtResponse;
 import com.example.assetManagement.model.LoginForm;
 import com.example.assetManagement.model.UserModel;
+import com.example.assetManagement.model.UserPrinciple;
 import com.example.assetManagement.repository.RoleRepository;
 import com.example.assetManagement.repository.UserRepository;
 import com.example.assetManagement.securityConfig.JwtProvider;
@@ -52,6 +57,11 @@ public class UserController {
     
     @Autowired
     IUserService userService;
+    
+   
+    
+    
+    
  
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser( @RequestBody LoginForm loginRequest) {
@@ -64,9 +74,9 @@ public class UserController {
         );
  
         SecurityContextHolder.getContext().setAuthentication(authentication);
- 
-        String jwt = jwtProvider.generateJwtToken(authentication);
-        return ResponseEntity.ok(new JwtResponse(jwt));
+        UserPrinciple userPrincipal = (UserPrinciple) authentication.getPrincipal();
+        String jwt = jwtProvider.generateJwtToken(userPrincipal);
+        return ResponseEntity.ok(new JwtResponse(jwt,userPrincipal.getId()));
     }
  
     @PostMapping("/signup")
@@ -124,7 +134,13 @@ public class UserController {
         return new ResponseEntity<>(userModel,HttpStatus.OK);
     }
  
-	
+	@GetMapping("/getById/{id}")
+	public ResponseEntity<?> getByUserId(@PathVariable("id") Long id){
+		UserModel userModel=userService.getByUserId(id);
+		
+		return new ResponseEntity<>(userModel,HttpStatus.OK);
+		
+	}
 	
 
 }

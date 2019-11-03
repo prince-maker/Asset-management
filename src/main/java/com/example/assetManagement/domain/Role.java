@@ -16,9 +16,11 @@ import javax.persistence.Table;
 import org.hibernate.annotations.NaturalId;
 
 import com.example.assetManagement.utlis.RoleName;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "roles")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Role {
 	
 		@Id

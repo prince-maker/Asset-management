@@ -5,13 +5,17 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.example.assetManagement.domain.EquipmentMaster;
+import com.example.assetManagement.domain.Role;
 import com.example.assetManagement.domain.UserDomain;
+import com.example.assetManagement.model.EquipmentMasterModel;
 import com.example.assetManagement.model.UserModel;
 import com.example.assetManagement.model.UserPrinciple;
 import com.example.assetManagement.repository.UserRepository;
@@ -56,5 +60,34 @@ public class UserDetailsServiceImpl implements UserDetailsService,IUserService {
 		
 		
 		return UserModels;
+	}
+
+	@Override
+	public UserDomain findByUserName(String name) {
+		UserDomain user = userRepository.findByUsername(name)
+                .orElseThrow(() -> 
+                      new UsernameNotFoundException("User Not Found with -> username or email : " + name)
+      );
+		return user;
+	}
+
+	@Override
+	public UserModel getByUserId(Long id) {
+		
+		UserDomain user;
+		try {
+			user = userRepository.findById(id).orElseThrow(()->new RuntimeException("user id not found"));
+			
+			UserModel userModel=new UserModel();
+			BeanUtils.copyProperties(user, userModel);
+			Role role=user.getRoles();
+			
+			userModel.setRoles(role);
+		
+			return userModel;
+			} catch (RuntimeException e) {
+	
+				throw e;
+	}
 	}
 }

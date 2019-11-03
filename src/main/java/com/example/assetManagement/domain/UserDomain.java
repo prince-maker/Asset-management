@@ -13,9 +13,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 	
 	@Entity
 	@Table(name = "users")
+	@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 	public class UserDomain {
 	    @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)

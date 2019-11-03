@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.assetManagement.domain.EquipmentMaster;
+import com.example.assetManagement.domain.SparePart;
 import com.example.assetManagement.model.EquipmentMasterModel;
+import com.example.assetManagement.model.SparePartModel;
 import com.example.assetManagement.repository.IEquipmentMasterRepo;
 import com.example.assetManagement.service.IEquipmentMaster;
 
@@ -45,5 +47,24 @@ public class EquipmentMasterImpl implements IEquipmentMaster{
 		});
 		return equipmentMasterModels;
 	}
+
+	@Override
+	public EquipmentMasterModel getByEquipmentId(Long id) {
+		EquipmentMaster equipmentMaster;
+		try {
+			equipmentMaster = iEquipmentMasterRepo.findById(id).orElseThrow(()->new RuntimeException("Equipment id not found"));
+			
+			EquipmentMasterModel equipmentMasterModel=new EquipmentMasterModel();
+			BeanUtils.copyProperties(equipmentMaster, equipmentMasterModel);
+			
+		
+			return equipmentMasterModel;
+			} catch (RuntimeException e) {
+	
+				throw e;
+	}
+	}
+
+
 
 }

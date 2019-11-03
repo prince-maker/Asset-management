@@ -59,7 +59,7 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
-		</dependency> --> 
+		</dependency>   -->
 		
 
 		
@@ -68,7 +68,7 @@
     		<groupId>org.postgresql</groupId>
     		<artifactId>postgresql</artifactId>
     		<version>9.4-1201-jdbc4</version>
-		 </dependency>   
+		 </dependency>    
  
 
 		

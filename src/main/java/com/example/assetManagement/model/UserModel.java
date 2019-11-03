@@ -1,5 +1,7 @@
 package com.example.assetManagement.model;
 
+import com.example.assetManagement.domain.Role;
+
 public class UserModel {
 	
 	private Long userId;
@@ -12,9 +14,9 @@ public class UserModel {
    
     private String email;
     
-    private String role;
+    private Role roles;
     
-   
+   private String role;
     private String password;
  
     public String getName() {
@@ -49,13 +51,9 @@ public class UserModel {
         this.password = password;
     }
 
-	public String getRole() {
-		return role;
-	}
+	
 
-	public void setRole(String role) {
-		this.role = role;
-	}
+	
 
 	public Long getUserId() {
 		return userId;
@@ -64,6 +62,26 @@ public class UserModel {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
+
+	public Role getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Role roles) {
+		this.roles = roles;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	
+
+
     
 	
    
