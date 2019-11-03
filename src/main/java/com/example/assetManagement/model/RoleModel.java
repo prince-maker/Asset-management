@@ -1,5 +1,7 @@
 package com.example.assetManagement.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -15,7 +17,7 @@ public class RoleModel {
     @Enumerated(EnumType.STRING)
     private RoleName name;
     
-  
+   private List<AccessPolicyModel> accessPolicyModel;
  
     public RoleModel() {}
  
@@ -40,5 +42,14 @@ public class RoleModel {
         this.name = name;
     }
 
+	public List<AccessPolicyModel> getAccessPolicyModel() {
+		return accessPolicyModel;
+	}
+
+	public void setAccessPolicyModel(List<AccessPolicyModel> accessPolicyModel) {
+		this.accessPolicyModel = accessPolicyModel;
+	}
+
+    
 
 }

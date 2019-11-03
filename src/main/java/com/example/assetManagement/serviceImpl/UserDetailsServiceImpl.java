@@ -15,7 +15,9 @@ import org.springframework.stereotype.Service;
 import com.example.assetManagement.domain.EquipmentMaster;
 import com.example.assetManagement.domain.Role;
 import com.example.assetManagement.domain.UserDomain;
+import com.example.assetManagement.model.AccessPolicyModel;
 import com.example.assetManagement.model.EquipmentMasterModel;
+import com.example.assetManagement.model.RoleModel;
 import com.example.assetManagement.model.UserModel;
 import com.example.assetManagement.model.UserPrinciple;
 import com.example.assetManagement.repository.UserRepository;
@@ -80,9 +82,22 @@ public class UserDetailsServiceImpl implements UserDetailsService,IUserService {
 			
 			UserModel userModel=new UserModel();
 			BeanUtils.copyProperties(user, userModel);
-			Role role=user.getRoles();
+			RoleModel roleModel=new RoleModel();
+			List<AccessPolicyModel> accessPolicyModels=new ArrayList<>();
+			BeanUtils.copyProperties(user.getRoles(), roleModel);
+			userModel.setRoles(roleModel);
+			user.getRoles().getAccessPolicyDomain().forEach(f->{
+				AccessPolicyModel accessPolicyModel=new AccessPolicyModel();
+				accessPolicyModel.setAccessPolicyId(f.getAccessPolicyId());
+				accessPolicyModel.setAccessPolicyname(f.getAccessPolicyname());
+				accessPolicyModel.setDescription(f.getDescription());
+				accessPolicyModels.add(accessPolicyModel);
 			
-			userModel.setRoles(role);
+			});
+			
+			
+			
+			userModel.getRoles().setAccessPolicyModel(accessPolicyModels);
 		
 			return userModel;
 			} catch (RuntimeException e) {

@@ -14,7 +14,7 @@ public class UserModel {
    
     private String email;
     
-    private Role roles;
+    private RoleModel roles;
     
    private String role;
     private String password;
@@ -63,11 +63,11 @@ public class UserModel {
 		this.userId = userId;
 	}
 
-	public Role getRoles() {
+	public RoleModel getRoles() {
 		return roles;
 	}
 
-	public void setRoles(Role roles) {
+	public void setRoles(RoleModel roles) {
 		this.roles = roles;
 	}
 
