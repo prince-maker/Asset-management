@@ -35,6 +35,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 	 
 	  
 	    private String password;
+	    
+	    private Long reportingTo;
 	 
 	    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
 	    @JoinColumn(name = "id")
@@ -98,7 +100,16 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 		public void setRoles(Role roles) {
 			this.roles = roles;
 		}
+
+		public Long getReportingTo() {
+			return reportingTo;
+		}
+
+		public void setReportingTo(Long reportingTo) {
+			this.reportingTo = reportingTo;
+		}
 	 
+		
 	   
 	
 	

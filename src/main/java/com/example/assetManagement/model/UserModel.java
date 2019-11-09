@@ -16,6 +16,9 @@ public class UserModel {
     
     private RoleModel roles;
     
+    private Long reportingId;
+    private String reportingTo;
+    
    private String role;
     private String password;
  
@@ -77,6 +80,22 @@ public class UserModel {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public Long getReportingId() {
+		return reportingId;
+	}
+
+	public void setReportingId(Long reportingId) {
+		this.reportingId = reportingId;
+	}
+
+	public String getReportingTo() {
+		return reportingTo;
+	}
+
+	public void setReportingTo(String reportingTo) {
+		this.reportingTo = reportingTo;
 	}
 
 	

@@ -70,6 +70,19 @@ public class SparePartMaster implements ISparePartMaster{
 				throw e;
 	}
 }
+
+	@Override
+	public SparePartModel update(SparePartModel sparePartModel) {
+		SparePart	sparePart = iSparePartsRepo.findById(sparePartModel.getSparePartId()).orElseThrow(()->new RuntimeException("Spare id not found"));
+		BeanUtils.copyProperties(sparePartModel, sparePart);
+		sparePart.setUpdatedDate(new Date());
+		
+		sparePart=iSparePartsRepo.save(sparePart);
+		BeanUtils.copyProperties(sparePart, sparePartModel);
+
+		return sparePartModel;
+	
+	}
 		
 	}
 

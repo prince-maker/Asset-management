@@ -13,4 +13,6 @@ public interface IEquipmentMaster{
 
 	EquipmentMasterModel getByEquipmentId(Long id);
 
+	EquipmentMasterModel update(EquipmentMasterModel equipmentMasterModel);
+
 }

@@ -12,4 +12,6 @@ public interface ISparePartMaster {
 
 	SparePartModel getBySpareId(Long id);
 
+	SparePartModel update(SparePartModel sparePartModel);
+
 }

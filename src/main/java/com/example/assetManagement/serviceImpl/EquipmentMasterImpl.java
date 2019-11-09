@@ -65,6 +65,18 @@ public class EquipmentMasterImpl implements IEquipmentMaster{
 	}
 	}
 
+	@Override
+	public EquipmentMasterModel update(EquipmentMasterModel equipmentMasterModel) {
+		EquipmentMaster equipmentMaster = iEquipmentMasterRepo.findById(equipmentMasterModel.getEquipmentId()).orElseThrow(()->new RuntimeException("Equipment id not found"));
+
+		BeanUtils.copyProperties(equipmentMasterModel, equipmentMaster);
+		equipmentMaster.setUpdatedDate(new Date());
+		equipmentMaster=iEquipmentMasterRepo.save(equipmentMaster);
+		BeanUtils.copyProperties(equipmentMaster, equipmentMasterModel);
+
+		return equipmentMasterModel;
+	}
+
 
 
 }
