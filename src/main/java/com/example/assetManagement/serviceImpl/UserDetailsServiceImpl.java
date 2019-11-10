@@ -55,6 +55,10 @@ public class UserDetailsServiceImpl implements UserDetailsService,IUserService {
 			
 			userModel.setPassword(user.getPassword());
 			//UserModels.add(userModel);
+			UserDomain user1 = userRepository.findById(user.getReportingTo()).orElseThrow(()->new RuntimeException("ReportingTo id not found"));
+
+			userModel.setReportingId(user1.getUserId());
+			userModel.setReportingTo(user1.getUsername());
 			RoleModel roleModel=new RoleModel();
 			List<AccessPolicyModel> accessPolicyModels=new ArrayList<>();
 			BeanUtils.copyProperties(user.getRoles(), roleModel);
@@ -95,9 +99,11 @@ public class UserDetailsServiceImpl implements UserDetailsService,IUserService {
 		UserDomain user;
 		try {
 			user = userRepository.findById(id).orElseThrow(()->new RuntimeException("user id not found"));
-			
+			UserDomain user1 = userRepository.findById(user.getReportingTo()).orElseThrow(()->new RuntimeException("ReportingTo id not found"));
 			UserModel userModel=new UserModel();
 			BeanUtils.copyProperties(user, userModel);
+			userModel.setReportingId(user1.getUserId());
+			userModel.setReportingTo(user1.getUsername());
 			RoleModel roleModel=new RoleModel();
 			List<AccessPolicyModel> accessPolicyModels=new ArrayList<>();
 			BeanUtils.copyProperties(user.getRoles(), roleModel);
