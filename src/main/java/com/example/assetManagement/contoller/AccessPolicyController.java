@@ -38,6 +38,7 @@ public class AccessPolicyController
 	
 	public ResponseEntity<?> getallAccessPolicy() throws Exception
 	{
+		
 		List<AccessPolicyModel>models= iAccessPolicyService.getAll();
 		
 		return new ResponseEntity<>(models,HttpStatus.OK);

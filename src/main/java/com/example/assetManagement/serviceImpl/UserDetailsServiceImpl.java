@@ -54,8 +54,24 @@ public class UserDetailsServiceImpl implements UserDetailsService,IUserService {
 			userModel.setUsername(user.getUsername());
 			
 			userModel.setPassword(user.getPassword());
-			UserModels.add(userModel);
+			//UserModels.add(userModel);
+			RoleModel roleModel=new RoleModel();
+			List<AccessPolicyModel> accessPolicyModels=new ArrayList<>();
+			BeanUtils.copyProperties(user.getRoles(), roleModel);
+			userModel.setRoles(roleModel);
+			user.getRoles().getAccessPolicyDomain().forEach(f->{
+				AccessPolicyModel accessPolicyModel=new AccessPolicyModel();
+				accessPolicyModel.setAccessPolicyId(f.getAccessPolicyId());
+				accessPolicyModel.setAccessPolicyname(f.getAccessPolicyname());
+				accessPolicyModel.setDescription(f.getDescription());
+				accessPolicyModels.add(accessPolicyModel);
 			
+			});
+			
+			
+			
+			userModel.getRoles().setAccessPolicyModel(accessPolicyModels);
+			UserModels.add(userModel);
 			
 		});
 		

@@ -70,15 +70,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 	    }
 	 
-	/*
-	 * @Bean CorsConfigurationSource corsConfigurationSource() { CorsConfiguration
-	 * configuration = new CorsConfiguration();
-	 * configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
-	 * configuration.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE"));
-	 * UrlBasedCorsConfigurationSource source = new
-	 * UrlBasedCorsConfigurationSource(); source.registerCorsConfiguration("/**",
-	 * configuration); return source; }
-	 */
+	 CorsConfigurationSource corsConfigurationSource() 
+	    {
+	        CorsConfiguration configuration = new CorsConfiguration();
+	        configuration.addAllowedOrigin("*");
+	        configuration.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE"));
+	        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+	        source.registerCorsConfiguration("/**", configuration);
+	        return source;
+	    }
 	
 
 }
