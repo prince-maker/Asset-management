@@ -12,6 +12,9 @@ import com.example.assetManagement.domain.UserDomain;
 public interface UserRepository extends JpaRepository<UserDomain, Long>{
 	
 	Optional<UserDomain> findByUsername(String username);
+	
+	
+
     Boolean existsByUsername(String username);
     Boolean existsByEmail(String email);
 

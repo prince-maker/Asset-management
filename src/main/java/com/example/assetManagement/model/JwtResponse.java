@@ -12,21 +12,8 @@ public class JwtResponse {
 	        this.userId=userId;
 	    }
 	 
-	    public String getAccessToken() {
-	        return token;
-	    }
 	 
-	    public void setAccessToken(String accessToken) {
-	        this.token = accessToken;
-	    }
-	 
-	    public String getTokenType() {
-	        return type;
-	    }
-	 
-	    public void setTokenType(String tokenType) {
-	        this.type = tokenType;
-	    }
+	
 
 		public String getToken() {
 			return token;
